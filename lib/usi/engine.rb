@@ -8,6 +8,10 @@ module USI
       @engine_path = Pathname.new(engine_path).expand_path
     end
 
+    def init_session
+      Session.new(self)
+    end
+
     def validate!
       unless @engine_path.exist?
         raise NoSuchEngineError, "No such engine to shougi -- #{@engine_path}"
