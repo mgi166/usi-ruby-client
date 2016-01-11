@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'usi/ruby/client/version'
+require 'usi/client/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "usi-ruby-client"
-  spec.version       = Usi::Ruby::Client::VERSION
+  spec.version       = USI::Client::VERSION
   spec.authors       = ["mgi166"]
   spec.email         = ["skskoari@gmail.com"]
 
