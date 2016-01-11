@@ -8,5 +8,10 @@ module USI
       @engine = engine
       @stdin, @stdout, @stderr, @wait_thr = *Open3.popen3(@engine.engine_path.to_s, chdir: @engine.engine_path.dirname)
     end
+
+    def write(command)
+      @stdin.puts command
+      @stdin.close
+    end
   end
 end
