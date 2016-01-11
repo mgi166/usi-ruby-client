@@ -1,0 +1,9 @@
+loop do
+  while command = STDIN.gets
+    if command == "quit"
+      break
+    end
+
+    puts command
+  end
+end
