@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 loop do
   while command = STDIN.gets
     if command == "quit"
