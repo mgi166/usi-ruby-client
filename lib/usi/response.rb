@@ -1,6 +1,6 @@
 module USI
   class Response
-    attr_reader :output, :name
+    attr_reader :output, :name, :author
 
     def initialize(output)
       @output = output
@@ -12,6 +12,8 @@ module USI
         case line
         when /^id name (.+)$/
           @name = $1
+        when /^id author (.+)$/
+          @author = $1
         when /^usiok$/
           @usiok = true
         end

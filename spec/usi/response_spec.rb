@@ -46,4 +46,24 @@ usiok
       end
     end
   end
+
+  describe '#author' do
+    let(:response) { USI::Response.new(output) }
+
+    context 'when output includes `id author`' do
+      let(:output) { "id author Hiraoka Takuya" }
+
+      it do
+        expect(response.author).to eq "Hiraoka Takuya"
+      end
+    end
+
+    context 'when output does not include `id author`' do
+      let(:output) { "id name hoge\nusiok" }
+
+      it do
+        expect(response.author).to be nil
+      end
+    end
+  end
 end
