@@ -66,4 +66,46 @@ usiok
       end
     end
   end
+
+  describe '#option' do
+    let(:response) { USI::Response.new(output) }
+
+    context 'when output includes `option name xxx type yyy zzz`' do
+      context 'a single option' do
+        let(:output) { "option name Best_Book_Move type check default false" }
+
+        it do
+          expect(response.option).to eq({ "Best_Book_Move" => { type: "check", params: "default false" }})
+        end
+      end
+
+      context 'multiple options' do
+        let(:output) do
+          <<-EOS
+option name Hash type button
+option name Emergency type spin default 200 min 0 max 30000
+option name Eval_Dir type string default 20151105
+          EOS
+        end
+
+        it do
+          expect(response.option).to eq(
+            {
+              "Hash" => { type: "button", params: nil },
+              "Emergency" => { type: "spin", params: "default 200 min 0 max 30000" },
+              "Eval_Dir" => { type: "string", params: "default 20151105" },
+            }
+          )
+        end
+      end
+    end
+
+    context 'when output does not includes `option name xxx type yyy zzz`' do
+      let(:output) { "id author hoge" }
+
+      it do
+        expect(response.option).to eq({})
+      end
+    end
+  end
 end
