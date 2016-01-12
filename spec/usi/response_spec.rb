@@ -26,4 +26,24 @@ usiok
       end
     end
   end
+
+  describe '#name' do
+    let(:response) { USI::Response.new(output) }
+
+    context 'when output includes `id name`' do
+      let(:output) { "id name Apery Debug Build" }
+
+      it do
+        expect(response.name).to eq "Apery Debug Build"
+      end
+    end
+
+    context 'when output does not include `id name`' do
+      let(:output) { "id author hoge\nusiok" }
+
+      it do
+        expect(response.name).to be nil
+      end
+    end
+  end
 end

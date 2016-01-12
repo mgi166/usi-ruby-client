@@ -1,6 +1,6 @@
 module USI
   class Response
-    attr_reader :output
+    attr_reader :output, :name
 
     def initialize(output)
       @output = output
@@ -10,6 +10,8 @@ module USI
     def parse
       output.split("\n").each do |line|
         case line
+        when /^id name (.+)$/
+          @name = $1
         when /^usiok$/
           @usiok = true
         end
