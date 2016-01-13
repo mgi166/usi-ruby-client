@@ -1,6 +1,6 @@
 module USI
   class Response
-    attr_reader :output, :name, :author, :option, :game_result
+    attr_reader :output, :name, :author, :option, :game_result, :best_move, :ponder
 
     def initialize(output)
       @output = output
@@ -21,9 +21,12 @@ module USI
           @usiok = true
         when /^readyok$/
           @ready = true
-        when /^bestmove (.+?)( (.+?))??$/
+        when /^bestmove (.+?)( ponder (.+?))??$/
           if %w(resign win).include?($1)
             @game_result = $1
+          else
+            @best_move = $1
+            @ponder = $3
           end
         end
       end
