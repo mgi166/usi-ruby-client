@@ -108,4 +108,24 @@ option name Eval_Dir type string default 20151105
       end
     end
   end
+
+  describe '#ready?' do
+    let(:response) { USI::Response.new(output) }
+
+    context 'when output includes `readyok`' do
+      let(:output) { "readyok" }
+
+      it do
+        expect(response.ready?).to be true
+      end
+    end
+
+    context 'when output does not include `readyok`' do
+      let(:output) { "id author hoge" }
+
+      it do
+        expect(response.ready?).to be false
+      end
+    end
+  end
 end

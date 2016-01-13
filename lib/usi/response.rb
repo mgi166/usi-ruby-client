@@ -19,12 +19,18 @@ module USI
           @option[$1] = { type: $2, params: $4 } if $1
         when /^usiok$/
           @usiok = true
+        when /^readyok$/
+          @ready = true
         end
       end
     end
 
     def usiok?
       !! @usiok
+    end
+
+    def ready?
+      !! @ready
     end
   end
 end
