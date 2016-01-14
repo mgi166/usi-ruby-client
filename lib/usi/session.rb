@@ -13,5 +13,11 @@ module USI
       @stdin.puts command
       @stdin.close
     end
+
+    def read
+      @stdout.each do |line|
+        Response.new(line)
+      end
+    end
   end
 end
