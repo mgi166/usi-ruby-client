@@ -1,11 +1,17 @@
 #!/usr/bin/env ruby
 
+dummy_output = ARGV[0]
+
 loop do
   while command = STDIN.gets
     if command == "quit"
       break
     end
 
-    puts command
+    if dummy_output
+      puts dummy_output
+    else
+      puts command
+    end
   end
 end
