@@ -3,7 +3,7 @@
 dummy_output = ARGV[0]
 
 loop do
-  while command = STDIN.gets.chomp
+  while command = $stdin.gets.chomp
     if command == "quit"
       break
     end
