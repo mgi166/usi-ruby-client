@@ -20,7 +20,7 @@ module USI
 
     def validate!
       unless @engine_path.exist?
-        raise NoSuchEngineError, "No such engine to shougi -- #{@engine_path}"
+        raise NoSuchEngineError, "No such USI engine -- #{@engine_path}"
       end
     end
   end
