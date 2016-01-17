@@ -42,4 +42,14 @@ describe USI::Session do
       session.status
     end
   end
+
+  describe '#alive?' do
+    let(:engine) { USI::Engine.new("spec/bin/dummy_engine") }
+    let(:session) { USI::Session.new(engine) }
+
+    it "delegates on Process::Waiter#alive?" do
+      expect(session.wait_thr).to receive(:alive?).with(no_args)
+      session.alive?
+    end
+  end
 end
