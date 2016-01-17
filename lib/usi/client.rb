@@ -30,6 +30,8 @@ module USI
       command("quit")
     end
 
+    # TODO: setoption, position, go, gameover
+
     def command(command)
       engine.command(command)
     end
