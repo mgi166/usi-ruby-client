@@ -1,8 +1,12 @@
+require "forwardable"
 require "open3"
 
 module USI
   class Session
-    attr_reader :engine, :stdin, :stdout, :stderr, :wait_thr
+    attr_reader :engine, :stdin, :stdout, :stderr, :wait_thr, :pid
+    extend Forwardable
+
+    def_delegators :@wait_thr, :pid
 
     def initialize(engine)
       @engine = engine
