@@ -6,7 +6,7 @@ module USI
     attr_reader :engine, :stdin, :stdout, :stderr, :wait_thr, :pid
     extend Forwardable
 
-    def_delegators :@wait_thr, :pid
+    def_delegators :@wait_thr, :pid, :status
 
     def initialize(engine)
       @engine = engine

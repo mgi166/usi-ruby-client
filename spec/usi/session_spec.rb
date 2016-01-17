@@ -32,4 +32,14 @@ describe USI::Session do
       session.pid
     end
   end
+
+  describe '#status' do
+    let(:engine) { USI::Engine.new("spec/bin/dummy_engine") }
+    let(:session) { USI::Session.new(engine) }
+
+    it "delegates on Process::Waiter#status" do
+      expect(session.wait_thr).to receive(:status).with(no_args)
+      session.status
+    end
+  end
 end
