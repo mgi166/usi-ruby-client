@@ -3,7 +3,8 @@ describe USI::Engine do
     let(:engine) { USI::Engine.new("path/to/engine") }
 
     it "returns pathname of engine" do
-      expect(engine.engine_path).to eq Pathname.new("path/to/engine")
+      expect(engine.engine_path).to be_instance_of Pathname
+      expect(engine.engine_path.to_s).to match /path\/to\/engine\z/
     end
   end
 
