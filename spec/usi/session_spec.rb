@@ -62,4 +62,14 @@ describe USI::Session do
       session.stop?
     end
   end
+
+  describe '#kill' do
+    let(:engine) { USI::Engine.new("spec/bin/dummy_engine") }
+    let(:session) { USI::Session.new(engine) }
+
+    it "delegates on Process::Waiter#kill" do
+      expect(session.wait_thr).to receive(:kill).with(no_args)
+      session.kill
+    end
+  end
 end
