@@ -15,9 +15,7 @@ module USI
     end
 
     def read
-      @stdout.each do |line|
-        Response.new(line)
-      end
+      Response.new(@stdout.read)
     end
   end
 end
