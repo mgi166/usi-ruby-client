@@ -12,6 +12,12 @@ module USI
       Session.new(self)
     end
 
+    def command(command)
+      session = Session.new(self)
+      session.write(command)
+      session.read
+    end
+
     def validate!
       unless @engine_path.exist?
         raise NoSuchEngineError, "No such engine to shougi -- #{@engine_path}"

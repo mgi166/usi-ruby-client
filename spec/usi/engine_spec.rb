@@ -16,4 +16,12 @@ describe USI::Engine do
       end
     end
   end
+
+  describe "#command" do
+    let(:engine) { USI::Engine.new("spec/bin/dummy_engine") }
+
+    it do
+      expect(engine.command("command")).to be_instance_of USI::Response
+    end
+  end
 end
