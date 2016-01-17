@@ -12,7 +12,7 @@ describe USI::Client do
 
     it "call USI::Engine#command" do
       expect(client.engine).to receive(:command).with("command name").and_call_original
-      expect(client.command("command name")).to be_instance_of USI::Response
+      expect(client.send(:command, "command name")).to be_instance_of USI::Response
     end
   end
 end

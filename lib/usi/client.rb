@@ -32,6 +32,8 @@ module USI
 
     # TODO: setoption, position, go, gameover
 
+    private
+
     def command(command)
       engine.command(command)
     end
