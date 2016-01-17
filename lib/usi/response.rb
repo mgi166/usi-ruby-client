@@ -8,6 +8,8 @@ module USI
       parse
     end
 
+    # TODO: info, checkmate, and refactor
+
     def parse
       output.split("\n").each do |line|
         case line
