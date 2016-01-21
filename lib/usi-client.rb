@@ -1,4 +1,5 @@
 require "usi/client"
 require "usi/engine"
+require "usi/resource"
 require "usi/response"
 require "usi/session"
