@@ -22,6 +22,11 @@ module USI::Resource
 
     attr_accessor :name, :author
 
+    def update(args)
+      attr = self.class.parse(args)
+      assign_attributes(attr)
+    end
+
     private
 
     def assign_attributes(attributes)

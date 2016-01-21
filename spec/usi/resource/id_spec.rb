@@ -46,4 +46,50 @@ describe USI::Resource::Id do
       end
     end
   end
+
+  describe '#update' do
+    context 'name' do
+      let(:id) { USI::Resource::Id.new("author" => "Einstein") }
+
+      context 'does not set' do
+        it "set new name" do
+          id.update("name brownian motion")
+          expect(id.name).to eq "brownian motion"
+        end
+      end
+
+      context 'already set' do
+        before do
+          id.name = "brownian motion"
+        end
+
+        it "update name" do
+          id.update("name random work")
+          expect(id.name).to eq "random work"
+        end
+      end
+    end
+
+    context 'author' do
+      let(:id) { USI::Resource::Id.new("name" => "A") }
+
+      context 'does not set' do
+        it "set new author" do
+          id.update("author B")
+          expect(id.author).to eq "B"
+        end
+      end
+
+      context 'already set' do
+        before do
+          id.author = "C"
+        end
+
+        it "Update author" do
+          id.update("author D")
+          expect(id.author).to eq "D"
+        end
+      end
+    end
+  end
 end
