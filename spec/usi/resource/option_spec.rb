@@ -60,16 +60,6 @@ describe USI::Resource::Option do
           ).to eq [["name", "Style"], ["type", "combo"], ["default", "Normal"]]
         end
       end
-
-      context 'name does not exist' do
-        subject { USI::Resource::Option.parse(args) }
-
-        let(:args) { "type combo default Normal" }
-
-        it do
-          skip "TODO"
-        end
-      end
     end
   end
 
@@ -183,6 +173,18 @@ describe USI::Resource::Option do
     end
 
     describe 'invalid argument' do
+      context 'name is invalid' do
+        context 'name does not exist' do
+          subject { USI::Resource::Option.new(args) }
+
+          let(:args) { [["type", "combo"], ["default", "Normal"]] }
+
+          it do
+            expect { subject }.to raise_error USI::Resource::Option::EmptyName
+          end
+        end
+      end
+
       context 'type is invalid' do
         context 'type is empty' do
           subject { USI::Resource::Option.new(args) }

@@ -1,5 +1,6 @@
 module USI::Resource
   class Option
+    class EmptyName < ::StandardError; end
     class UnknownType < ::TypeError; end
 
     def create(args)
@@ -21,6 +22,7 @@ module USI::Resource
     attr_accessor :name, :type, :default, :min, :max, :var
 
     def validate!
+      raise EmptyName, "Require the option name" unless name
       raise UnknownType, "Unknown or empty type -- #{type}" unless valid_type?(type)
     end
 
