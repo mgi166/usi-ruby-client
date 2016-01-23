@@ -1,5 +1,10 @@
 module USI::Resource
   class Bestmove
+    def self.create(args)
+      bestmove, ponder = parse(args)
+      new(bestmove, ponder)
+    end
+
     def self.parse(args)
       ponder = nil
       bestmove, ponders = args.split(" ", 2)
