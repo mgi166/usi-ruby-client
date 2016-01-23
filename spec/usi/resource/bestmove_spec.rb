@@ -70,4 +70,24 @@ describe USI::Resource::Bestmove do
       end
     end
   end
+
+  describe '#win?' do
+    let(:bestmove) { USI::Resource::Bestmove.new(*args) }
+
+    context 'includes `resign`' do
+      let(:args) { ["win", nil] }
+
+      it do
+        expect(bestmove.win?).to be true
+      end
+    end
+
+    context 'does not include `resign`' do
+      let(:args) { ["8c8d", "ponder" => "None"] }
+
+      it do
+        expect(bestmove.win?).to be false
+      end
+    end
+  end
 end

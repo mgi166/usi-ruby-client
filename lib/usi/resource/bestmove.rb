@@ -31,5 +31,9 @@ module USI::Resource
     def resign?
       bestmove == "resign"
     end
+
+    def win?
+      bestmove == "win"
+    end
   end
 end
