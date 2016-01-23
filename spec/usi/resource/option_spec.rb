@@ -151,5 +151,23 @@ describe USI::Resource::Option do
         expect(subject.default).to eq "Normal"
       end
     end
+
+    context 'var is included' do
+      subject { USI::Resource::Option.new(args) }
+
+      let(:args) { [["name", "Style"], ["type", "combo"], ["var", "Solid"], ["var", "Normal"]] }
+
+      it "have `name` attribute" do
+        expect(subject.name).to eq "Style"
+      end
+
+      it "`type` is combo" do
+        expect(subject.type).to eq "combo"
+      end
+
+      it "have `var` attribute" do
+        expect(subject.var).to eq ["Solid", "Normal"]
+      end
+    end
   end
 end

@@ -45,5 +45,9 @@ module USI::Resource
         @default = value
       end
     end
+
+    def var=(value)
+      @var << value
+    end
   end
 end
