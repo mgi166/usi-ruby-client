@@ -82,4 +82,74 @@ describe USI::Resource::Option do
       end
     end
   end
+
+  describe '.new' do
+    context 'most simple pattern' do
+      subject { USI::Resource::Option.new(args) }
+
+      let(:args) { [["name", "ResetLearning"], ["type", "button"]] }
+
+      it "have `name` attribute" do
+        expect(subject.name).to eq "ResetLearning"
+      end
+
+      it "have `type` attribute" do
+        expect(subject.type).to eq "button"
+      end
+    end
+
+    context 'type is check' do
+      subject { USI::Resource::Option.new(args) }
+
+      let(:args) { [["name", "Best_Book_Move"], ["type", "check"], ["default", "false"]] }
+
+      it "have `name` attribute" do
+        expect(subject.name).to eq "Best_Book_Move"
+      end
+
+      it "`type` is check" do
+        expect(subject.type).to eq "check"
+      end
+
+      it "have `default` attribute(boolean)" do
+        expect(subject.default).to be false
+      end
+    end
+
+    context 'type is spin' do
+      subject { USI::Resource::Option.new(args) }
+
+      let(:args) { [["name", "Selectivity"], ["type", "spin"], ["default", "2"]] }
+
+      it "have `name` attribute" do
+        expect(subject.name).to eq "Selectivity"
+      end
+
+      it "`type` is spin" do
+        expect(subject.type).to eq "spin"
+      end
+
+      it "have `default` attribute(Fixnum)" do
+        expect(subject.default).to be 2
+      end
+    end
+
+    context 'type is others' do
+      subject { USI::Resource::Option.new(args) }
+
+      let(:args) { [["name", "Style"], ["type", "combo"], ["default", "Normal"]] }
+
+      it "have `name` attribute" do
+        expect(subject.name).to eq "Style"
+      end
+
+      it "`type` is combo" do
+        expect(subject.type).to eq "combo"
+      end
+
+      it "have `default` attribute(String)" do
+        expect(subject.default).to eq "Normal"
+      end
+    end
+  end
 end
