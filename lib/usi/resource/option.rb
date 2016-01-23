@@ -1,5 +1,7 @@
 module USI::Resource
   class Option
+    class UnknownType < ::TypeError; end
+
     def create(args)
       commands = parse(args)
       new(commands)
@@ -13,9 +15,14 @@ module USI::Resource
       @var = []
 
       assign_attributes(commands)
+      validate!
     end
 
     attr_accessor :name, :type, :default, :min, :max, :var
+
+    def validate!
+      raise UnknownType, "Unknown or empty type -- #{type}" unless valid_type?(type)
+    end
 
     def default=(value)
       # NOTE: USI protocol specification, `type` attributes always exists.
@@ -56,6 +63,10 @@ module USI::Resource
       attributes.each do |sub_command, value|
         send("#{sub_command}=", value)
       end
+    end
+
+    def valid_type?(type)
+      %w(check spin combo button string filename).include?(type)
     end
   end
 end

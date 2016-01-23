@@ -70,16 +70,6 @@ describe USI::Resource::Option do
           skip "TODO"
         end
       end
-
-      context 'type does not exist' do
-        subject { USI::Resource::Option.parse(args) }
-
-        let(:args) { "name Style default Normal" }
-
-        it do
-          skip "TODO"
-        end
-      end
     end
   end
 
@@ -189,6 +179,30 @@ describe USI::Resource::Option do
 
       it "have `min` attribute(Fixnum)" do
         expect(subject.min).to be 0
+      end
+    end
+
+    describe 'invalid argument' do
+      context 'type is invalid' do
+        context 'type is empty' do
+          subject { USI::Resource::Option.new(args) }
+
+          let(:args) { [["name", "Style"], ["default", "Normal"]] }
+
+          it do
+            expect { subject }.to raise_error USI::Resource::Option::UnknownType
+          end
+        end
+
+        context 'type is unknown type' do
+          subject { USI::Resource::Option.new(args) }
+
+          let(:args) { [["name", "Style"], ["type", "unknown"]] }
+
+          it do
+            expect { subject }.to raise_error USI::Resource::Option::UnknownType
+          end
+        end
       end
     end
   end
