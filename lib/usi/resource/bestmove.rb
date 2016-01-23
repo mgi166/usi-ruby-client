@@ -23,9 +23,13 @@ module USI::Resource
 
     def initialize(bestmove, ponder)
       @bestmove = bestmove
-      @ponder = ponder["ponder"]
+      @ponder = ponder && ponder["ponder"]
     end
 
     attr_accessor :bestmove, :ponder
+
+    def resign?
+      bestmove == "resign"
+    end
   end
 end

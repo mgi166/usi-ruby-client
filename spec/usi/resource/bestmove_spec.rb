@@ -50,4 +50,24 @@ describe USI::Resource::Bestmove do
       expect(bestmove.ponder).to eq "None"
     end
   end
+
+  describe '#resign?' do
+    let(:bestmove) { USI::Resource::Bestmove.new(*args) }
+
+    context 'includes `resign`' do
+      let(:args) { ["resign", nil] }
+
+      it do
+        expect(bestmove.resign?).to be true
+      end
+    end
+
+    context 'does not include `resign`' do
+      let(:args) { ["8c8d", "ponder" => "None"] }
+
+      it do
+        expect(bestmove.resign?).to be false
+      end
+    end
+  end
 end
