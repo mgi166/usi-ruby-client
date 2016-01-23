@@ -17,14 +17,6 @@ module USI::Resource
 
     attr_accessor :name, :type, :default, :min, :max, :var
 
-    private
-
-    def assign_attributes(attributes)
-      attributes.each do |sub_command, value|
-        send("#{sub_command}=", value)
-      end
-    end
-
     def default=(value)
       # NOTE: USI protocol specification, `type` attributes always exists.
       # http://www.geocities.jp/shogidokoro/usi.html
@@ -56,6 +48,14 @@ module USI::Resource
 
     def min=(value)
       @min = value.to_i
+    end
+
+    private
+
+    def assign_attributes(attributes)
+      attributes.each do |sub_command, value|
+        send("#{sub_command}=", value)
+      end
     end
   end
 end
