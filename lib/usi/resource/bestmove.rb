@@ -20,5 +20,12 @@ module USI::Resource
 
       [bestmove, ponder]
     end
+
+    def initialize(bestmove, ponder)
+      @bestmove = bestmove
+      @ponder = ponder["ponder"]
+    end
+
+    attr_accessor :bestmove, :ponder
   end
 end

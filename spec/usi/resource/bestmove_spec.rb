@@ -30,4 +30,24 @@ describe USI::Resource::Bestmove do
       end
     end
   end
+
+  describe '#bestmove' do
+    let(:bestmove) { USI::Resource::Bestmove.new(*args) }
+
+    let(:args) { ["8c8d", "ponder" => "None"] }
+
+    it "returns bestmove position" do
+      expect(bestmove.bestmove).to eq "8c8d"
+    end
+  end
+
+  describe '#ponder' do
+    let(:bestmove) { USI::Resource::Bestmove.new(*args) }
+
+    let(:args) { ["8c8d", "ponder" => "None"] }
+
+    it "returns ponder position" do
+      expect(bestmove.ponder).to eq "None"
+    end
+  end
 end
