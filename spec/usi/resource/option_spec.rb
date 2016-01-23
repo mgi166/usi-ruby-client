@@ -169,5 +169,27 @@ describe USI::Resource::Option do
         expect(subject.var).to eq ["Solid", "Normal"]
       end
     end
+
+    context 'max, min is included' do
+      subject { USI::Resource::Option.new(args) }
+
+      let(:args) { [["name", "Selectivity"], ["type", "spin"], ["default", "2"], ["min", "0"], ["max", "4"]] }
+
+      it "have `name` attribute" do
+        expect(subject.name).to eq "Selectivity"
+      end
+
+      it "`type` is combo" do
+        expect(subject.type).to eq "spin"
+      end
+
+      it "have `max` attribute(Fixnum)" do
+        expect(subject.max).to be 4
+      end
+
+      it "have `min` attribute(Fixnum)" do
+        expect(subject.min).to be 0
+      end
+    end
   end
 end

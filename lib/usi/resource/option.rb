@@ -49,5 +49,13 @@ module USI::Resource
     def var=(value)
       @var << value
     end
+
+    def max=(value)
+      @max = value.to_i
+    end
+
+    def min=(value)
+      @min = value.to_i
+    end
   end
 end
