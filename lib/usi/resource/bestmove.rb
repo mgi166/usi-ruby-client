@@ -35,5 +35,9 @@ module USI::Resource
     def win?
       bestmove == "win"
     end
+
+    def gameover?
+      win? || resign?
+    end
   end
 end

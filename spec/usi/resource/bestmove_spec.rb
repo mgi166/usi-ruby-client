@@ -90,4 +90,34 @@ describe USI::Resource::Bestmove do
       end
     end
   end
+
+  describe '#gameover?' do
+    let(:bestmove) { USI::Resource::Bestmove.new(*args) }
+
+    context 'win or resign' do
+      context 'win' do
+        let(:args) { ["win", nil] }
+
+        it do
+          expect(bestmove.gameover?).to be true
+        end
+      end
+
+      context 'resign' do
+        let(:args) { ["resign", nil] }
+
+        it do
+          expect(bestmove.gameover?).to be true
+        end
+      end
+    end
+
+    context 'other' do
+      let(:args) { ["8c8d", "ponder" => "None"] }
+
+      it do
+        expect(bestmove.gameover?).to be false
+      end
+    end
+  end
 end
