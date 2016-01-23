@@ -3,7 +3,7 @@ module USI::Resource
     class EmptyName < ::StandardError; end
     class UnknownType < ::TypeError; end
 
-    def create(args)
+    def self.create(args)
       commands = parse(args)
       new(commands)
     end
