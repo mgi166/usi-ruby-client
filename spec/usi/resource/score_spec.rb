@@ -26,4 +26,24 @@ describe USI::Resource::Score do
       end
     end
   end
+
+  describe '#mate' do
+    let(:score) { USI::Resource::Score.new(args) }
+
+    context '`mate` is included' do
+      let(:args) { ["mate", "+"] }
+
+      it "returns the mate value" do
+        expect(score.mate).to eq "+"
+      end
+    end
+
+    context '`mate` is not included' do
+      let(:args) { ["cp", "-1521"] }
+
+      it do
+        expect(score.mate).to be nil
+      end
+    end
+  end
 end
