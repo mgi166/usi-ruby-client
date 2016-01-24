@@ -32,6 +32,10 @@ module USI::Resource
       @seldepth = value.to_i
     end
 
+    def time=(value)
+      @time = value.to_i
+    end
+
     private
 
     def assign_attributes(attributes)

@@ -58,4 +58,14 @@ describe USI::Resource::Info do
       expect(subject.seldepth).to eq 8
     end
   end
+
+  describe '#time' do
+    subject { USI::Resource::Info.new(args) }
+
+    let(:args) { [["time", "1141"]] }
+
+    it "returns the time of milisecond" do
+      expect(subject.time).to eq 1141
+    end
+  end
 end
