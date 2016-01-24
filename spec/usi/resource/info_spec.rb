@@ -48,4 +48,14 @@ describe USI::Resource::Info do
       expect(subject.depth).to eq 3
     end
   end
+
+  describe '#seldepth' do
+    subject { USI::Resource::Info.new(args) }
+
+    let(:args) { [["depth", "5"], ["seldepth", "8"]] }
+
+    it "returns the seldepth(this means selected depth)" do
+      expect(subject.seldepth).to eq 8
+    end
+  end
 end

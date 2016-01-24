@@ -28,6 +28,10 @@ module USI::Resource
       @depth = value.to_i
     end
 
+    def seldepth=(value)
+      @seldepth = value.to_i
+    end
+
     private
 
     def assign_attributes(attributes)
