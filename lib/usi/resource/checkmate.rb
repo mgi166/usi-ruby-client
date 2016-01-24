@@ -1,5 +1,10 @@
 module USI::Resource
   class Checkmate
+    def self.create(args)
+      moves, state = parse(args)
+      new(moves, state)
+    end
+
     def self.parse(args)
       state = nil
       moves = args.split(" ")
