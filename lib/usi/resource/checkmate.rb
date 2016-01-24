@@ -9,15 +9,15 @@ module USI::Resource
       state = nil
       moves = args.split(" ")
 
-      if checkmate_puzzle?(moves.first)
+      unless solved?(moves.first)
         state = moves.shift
       end
 
       [moves, state]
     end
 
-    def self.checkmate_puzzle?(value)
-      %w(notimplemented timeout nomate).include?(value)
+    def self.solved?(value)
+      ! %w(notimplemented timeout nomate).include?(value)
     end
 
     def initialize(move, state)
@@ -25,5 +25,9 @@ module USI::Resource
     end
 
     attr_accessor :move, :state
+
+    def solved?
+      self.class.solved?(state)
+    end
   end
 end
