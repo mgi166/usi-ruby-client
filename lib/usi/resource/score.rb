@@ -10,6 +10,14 @@ module USI::Resource
       @cp = value.to_f
     end
 
+    def upperbound?
+      state == "upperbound"
+    end
+
+    def lowerbound?
+      state == "lowerbound"
+    end
+
     private
 
     def assign_attributes(args)

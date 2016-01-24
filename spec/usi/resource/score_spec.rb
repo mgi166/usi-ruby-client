@@ -46,4 +46,44 @@ describe USI::Resource::Score do
       end
     end
   end
+
+  describe '#upperbound?' do
+    let(:score) { USI::Resource::Score.new(args) }
+
+    context '`upperbound` is included' do
+      let(:args) { ["cp", "9999", "upperbound"] }
+
+      it do
+        expect(score.upperbound?).to be true
+      end
+    end
+
+    context '`upperbound` is not included' do
+      let(:args) { ["cp", "-1521"] }
+
+      it do
+        expect(score.upperbound?).to be false
+      end
+    end
+  end
+
+  describe '#lowerbound?' do
+    let(:score) { USI::Resource::Score.new(args) }
+
+    context '`lowerbound` is included' do
+      let(:args) { ["cp", "-9999", "lowerbound"] }
+
+      it do
+        expect(score.lowerbound?).to be true
+      end
+    end
+
+    context '`lowerbound` is not included' do
+      let(:args) { ["cp", "-1521"] }
+
+      it do
+        expect(score.lowerbound?).to be false
+      end
+    end
+  end
 end
