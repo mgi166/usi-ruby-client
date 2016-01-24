@@ -48,6 +48,10 @@ module USI::Resource
       @nps = value.to_i
     end
 
+    def string=(value)
+      @string = value.join(" ")
+    end
+
     private
 
     def assign_attributes(attributes)

@@ -112,4 +112,14 @@ describe USI::Resource::Info do
       expect(subject.nps).to eq 116391
     end
   end
+
+  describe '#string' do
+    subject { USI::Resource::Info.new(args) }
+
+    let(:args) { [["string", "7g7f", "(70%)"]] }
+
+    it "returns the string for display on GUI" do
+      expect(subject.string).to eq "7g7f (70%)"
+    end
+  end
 end
