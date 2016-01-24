@@ -19,5 +19,11 @@ module USI::Resource
     def self.checkmate_puzzle?(value)
       %w(notimplemented timeout nomate).include?(value)
     end
+
+    def initialize(move, state)
+      @move, @state = move, state
+    end
+
+    attr_accessor :move, :state
   end
 end
