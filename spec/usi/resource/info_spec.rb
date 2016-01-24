@@ -102,4 +102,14 @@ describe USI::Resource::Info do
       expect(subject.hashfull).to eq 104
     end
   end
+
+  describe '#nps' do
+    subject { USI::Resource::Info.new(args) }
+
+    let(:args) { [["nps", "116391"]] }
+
+    it "returns the number of nps" do
+      expect(subject.nps).to eq 116391
+    end
+  end
 end

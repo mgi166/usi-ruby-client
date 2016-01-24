@@ -44,6 +44,10 @@ module USI::Resource
       @hashfull = value.to_i
     end
 
+    def nps=(value)
+      @nps = value.to_i
+    end
+
     private
 
     def assign_attributes(attributes)
