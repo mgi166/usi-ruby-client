@@ -18,6 +18,10 @@ module USI::Resource
       state == "lowerbound"
     end
 
+    def update(args)
+      assign_attributes(args)
+    end
+
     private
 
     def assign_attributes(args)

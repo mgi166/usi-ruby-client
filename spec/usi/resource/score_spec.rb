@@ -86,4 +86,28 @@ describe USI::Resource::Score do
       end
     end
   end
+
+  describe '#update' do
+    let(:score) { USI::Resource::Score.new(args) }
+
+    context 'already same property set' do
+      let(:args) { ["cp", "-1521"] }
+
+      it "update to new attributes from old" do
+        score.update(["cp", "1000"])
+        expect(score.cp).to eq 1000
+      end
+    end
+
+    context 'does not set property' do
+      let(:args) { ["cp", "-1521"] }
+
+      it "add to new attributes" do
+        score.update(["mate", "+"])
+
+        expect(score.cp).to eq -1521
+        expect(score.mate).to eq "+"
+      end
+    end
+  end
 end
