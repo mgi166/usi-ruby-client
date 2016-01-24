@@ -68,4 +68,14 @@ describe USI::Resource::Info do
       expect(subject.time).to eq 1141
     end
   end
+
+  describe '#nodes' do
+    subject { USI::Resource::Info.new(args) }
+
+    let(:args) { [["nodes", "135125"]] }
+
+    it "returns the number of nodes" do
+      expect(subject.nodes).to eq 135125
+    end
+  end
 end

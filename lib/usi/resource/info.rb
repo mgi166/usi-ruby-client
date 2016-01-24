@@ -36,6 +36,10 @@ module USI::Resource
       @time = value.to_i
     end
 
+    def nodes=(value)
+      @nodes = value.to_i
+    end
+
     private
 
     def assign_attributes(attributes)
