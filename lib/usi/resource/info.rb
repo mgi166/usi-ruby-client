@@ -40,6 +40,10 @@ module USI::Resource
       @nodes = value.to_i
     end
 
+    def hashfull=(value)
+      @hashfull = value.to_i
+    end
+
     private
 
     def assign_attributes(attributes)

@@ -92,4 +92,14 @@ describe USI::Resource::Info do
       expect(subject.pv).to eq %w(3a3b L*4h 4c4d)
     end
   end
+
+  describe '#hashfull' do
+    subject { USI::Resource::Info.new(args) }
+
+    let(:args) { [["hashfull", "104"]] }
+
+    it "returns the number of hashfull" do
+      expect(subject.hashfull).to eq 104
+    end
+  end
 end
