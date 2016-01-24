@@ -17,5 +17,31 @@ module USI::Resource
         end
       end.to_a
     end
+
+    def initialize(commands)
+      assign_attributes(commands)
+    end
+
+    attr_accessor *SUBCOMMANDS
+
+    def depth=(value)
+      @depth = value.to_i
+    end
+
+    private
+
+    def assign_attributes(attributes)
+      attributes.each do |attribute|
+        attr = attribute.dup
+        name = attr.shift
+
+        case name
+        when "pv", "string"
+          send("#{name}=", attr)
+        else
+          send("#{name}=", attr.first)
+        end
+      end
+    end
   end
 end

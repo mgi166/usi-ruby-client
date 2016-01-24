@@ -38,4 +38,14 @@ describe USI::Resource::Info do
       end
     end
   end
+
+  describe '#depth' do
+    subject { USI::Resource::Info.new(args) }
+
+    let(:args) { [["depth", "3"]] }
+
+    it "returns the depth" do
+      expect(subject.depth).to eq 3
+    end
+  end
 end
