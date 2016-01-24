@@ -78,4 +78,18 @@ describe USI::Resource::Info do
       expect(subject.nodes).to eq 135125
     end
   end
+
+  describe '#pv' do
+    subject { USI::Resource::Info.new(args) }
+
+    let(:args) { [["pv", "3a3b", "L*4h", "4c4d"]] }
+
+    it do
+      expect(subject.pv).to be_instance_of Array
+    end
+
+    it "returns principal variations" do
+      expect(subject.pv).to eq %w(3a3b L*4h 4c4d)
+    end
+  end
 end
