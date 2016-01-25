@@ -90,6 +90,11 @@ describe USI::Resource::Score do
   describe '#update' do
     let(:score) { USI::Resource::Score.new(args) }
 
+    it do
+      score = USI::Resource::Score.new("cp -1000")
+      expect(score.update("cp 1000")).to be_instance_of USI::Resource::Score
+    end
+
     context 'already same property set' do
       let(:args) { ["cp", "-1521"] }
 

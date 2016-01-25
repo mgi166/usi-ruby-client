@@ -20,6 +20,7 @@ module USI::Resource
 
     def update(args)
       assign_attributes(args)
+      self
     end
 
     private
