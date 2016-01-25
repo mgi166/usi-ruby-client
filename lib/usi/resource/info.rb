@@ -60,6 +60,12 @@ module USI::Resource
       end
     end
 
+    def update(args)
+      commands = self.class.parse(args)
+      assign_attributes(commands)
+      self
+    end
+
     private
 
     def assign_attributes(attributes)

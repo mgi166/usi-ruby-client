@@ -151,4 +151,20 @@ describe USI::Resource::Info do
       end
     end
   end
+
+  describe '#update' do
+    subject { info.update(args) }
+
+    let(:info) { USI::Resource::Info.create("nodes 120000") }
+
+    context 'update exists attributes' do
+      let(:args) { "time 1141 depth 3 nodes 135125" }
+
+      it "update new attributes from old" do
+        expect(subject.time).to eq 1141
+        expect(subject.depth).to eq 3
+        expect(subject.nodes).to eq 135125
+      end
+    end
+  end
 end
