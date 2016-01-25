@@ -1,6 +1,6 @@
 module USI
   class Response
-    attr_reader :output, :id, :option, :game_result, :best_move, :ponder
+    attr_reader :output, :id, :option, :game_result, :bestmove
 
     def initialize(output)
       @output = output
@@ -25,13 +25,8 @@ module USI
           end
         when /^option name (.+?) type (.+?)( (.+))??$/
           @option[$1] = { type: $2, params: $4 } if $1
-        when /^bestmove (.+?)( ponder (.+?))??$/
-          if %w(resign win).include?($1)
-            @game_result = $1
-          else
-            @best_move = $1
-            @ponder = $3
-          end
+        when /^bestmove (.+)$/
+          @bestmove = Resource::Bestmove.create($1)
         end
       end
     end

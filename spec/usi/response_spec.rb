@@ -147,14 +147,18 @@ option name Eval_Dir type string default 20151105
     end
   end
 
-  describe '#best_move, #ponder' do
+  describe '#bestmove' do
     let(:response) { USI::Response.new(output) }
 
     context 'when output includes `bestmove xxxx`' do
       let(:output) { "bestmove 8c8d" }
 
       it do
-        expect(response.best_move).to eq "8c8d"
+        expect(response.bestmove).to be_instance_of USI::Resource::Bestmove
+      end
+
+      it 'bestmove has `bestmove` attributes' do
+        expect(response.bestmove.bestmove).to eq "8c8d"
       end
     end
 
@@ -162,8 +166,12 @@ option name Eval_Dir type string default 20151105
       let(:output) { "bestmove 8c8d ponder None" }
 
       it do
-        expect(response.best_move).to eq "8c8d"
-        expect(response.ponder).to eq "None"
+        expect(response.bestmove).to be_instance_of USI::Resource::Bestmove
+      end
+
+      it 'bestmove has `bestmove`, `ponder` attributes' do
+        expect(response.bestmove.bestmove).to eq "8c8d"
+        expect(response.bestmove.ponder).to eq "None"
       end
     end
   end
