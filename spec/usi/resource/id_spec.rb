@@ -48,6 +48,12 @@ describe USI::Resource::Id do
   end
 
   describe '#update' do
+    let(:id) { USI::Resource::Id.new("author" => "Einstein") }
+
+    it do
+      expect(id.update("name brownian")).to be_instance_of USI::Resource::Id
+    end
+
     context 'name' do
       let(:id) { USI::Resource::Id.new("author" => "Einstein") }
 

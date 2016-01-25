@@ -25,6 +25,7 @@ module USI::Resource
     def update(args)
       attr = self.class.parse(args)
       assign_attributes(attr)
+      self
     end
 
     private
