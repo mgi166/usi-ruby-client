@@ -122,4 +122,33 @@ describe USI::Resource::Info do
       expect(subject.string).to eq "7g7f (70%)"
     end
   end
+
+  describe '#score' do
+    subject { USI::Resource::Info.new(args) }
+
+    context 'single score' do
+      let(:args) { [["score", "cp", "-1521"]] }
+
+      it do
+        expect(subject.score).to be_instance_of USI::Resource::Score
+      end
+
+      it "score has an attribute" do
+        expect(subject.score.cp).to eq -1521
+      end
+    end
+
+    context 'multipul scores' do
+      let(:args) { [["score", "cp", "-1521"], ["score", "mate", "+"]] }
+
+      it do
+        expect(subject.score).to be_instance_of USI::Resource::Score
+      end
+
+      it "score has attributes" do
+        expect(subject.score.cp).to eq -1521
+        expect(subject.score.mate).to eq "+"
+      end
+    end
+  end
 end

@@ -52,6 +52,14 @@ module USI::Resource
       @string = value.join(" ")
     end
 
+    def score=(value)
+      if @score
+        @score.update(value)
+      else
+        @score = Score.new(value)
+      end
+    end
+
     private
 
     def assign_attributes(attributes)
@@ -60,7 +68,7 @@ module USI::Resource
         name = attr.shift
 
         case name
-        when "pv", "string"
+        when "pv", "string", "score"
           send("#{name}=", attr)
         else
           send("#{name}=", attr.first)
