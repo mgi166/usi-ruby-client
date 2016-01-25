@@ -1,6 +1,6 @@
 module USI
   class Response
-    attr_reader :output, :id, :option, :game_result, :bestmove, :checkmate, :info
+    attr_reader :output, :id, :option, :bestmove, :checkmate, :info
 
     def initialize(output)
       @output = output
