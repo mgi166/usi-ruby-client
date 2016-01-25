@@ -1,6 +1,6 @@
 module USI
   class Response
-    attr_reader :output, :name, :author, :option, :game_result, :best_move, :ponder
+    attr_reader :output, :id, :option, :game_result, :best_move, :ponder
 
     def initialize(output)
       @output = output
@@ -13,16 +13,18 @@ module USI
     def parse
       output.split("\n").each do |line|
         case line
-        when /^id name (.+)$/
-          @name = $1
-        when /^id author (.+)$/
-          @author = $1
-        when /^option name (.+?) type (.+?)( (.+))??$/
-          @option[$1] = { type: $2, params: $4 } if $1
         when /^usiok$/
           @usiok = true
         when /^readyok$/
           @ready = true
+        when /^id (.+)$/
+          if @id
+            @id.update($1)
+          else
+            @id = Resource::Id.create($1)
+          end
+        when /^option name (.+?) type (.+?)( (.+))??$/
+          @option[$1] = { type: $2, params: $4 } if $1
         when /^bestmove (.+?)( ponder (.+?))??$/
           if %w(resign win).include?($1)
             @game_result = $1
