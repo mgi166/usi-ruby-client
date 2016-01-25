@@ -1,6 +1,6 @@
 module USI
   class Response
-    attr_reader :output, :id, :option, :game_result, :bestmove
+    attr_reader :output, :id, :option, :game_result, :bestmove, :checkmate
 
     def initialize(output)
       @output = output
@@ -27,6 +27,8 @@ module USI
           @option[$1] = { type: $2, params: $4 } if $1
         when /^bestmove (.+)$/
           @bestmove = Resource::Bestmove.create($1)
+        when /^checkmate (.+?)$/
+          @checkmate = Resource::Checkmate.create($1)
         end
       end
     end

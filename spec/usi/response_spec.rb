@@ -175,4 +175,28 @@ option name Eval_Dir type string default 20151105
       end
     end
   end
+
+  describe '#checkmate' do
+    let(:response) { USI::Response.new(output) }
+
+    context 'when output includes `checkmate xxxx`' do
+      let(:output) { "checkmate G*8f 9f9g 8f8g 9g9h 8g8h" }
+
+      it do
+        expect(response.checkmate).to be_instance_of USI::Resource::Checkmate
+      end
+
+      it "checkmate has `move` attributes" do
+        expect(response.checkmate.move).to eq %w(G*8f 9f9g 8f8g 9g9h 8g8h)
+      end
+    end
+
+    context 'when output does not include `checkmate xxxx`' do
+      let(:output) { "bestmove 8c8d ponder None" }
+
+      it do
+        expect(response.checkmate).to be nil
+      end
+    end
+  end
 end
