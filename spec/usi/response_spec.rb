@@ -117,36 +117,6 @@ option name Eval_Dir type string default 20151105
     end
   end
 
-  describe '#game_result' do
-    let(:response) { USI::Response.new(output) }
-
-    context 'when output includes `bestmove resign|win`' do
-      context 'resign' do
-        let(:output) { "bestmove resign" }
-
-        it do
-          expect(response.game_result).to eq "resign"
-        end
-      end
-
-      context 'win' do
-        let(:output) { "bestmove win" }
-
-        it do
-          expect(response.game_result).to eq "win"
-        end
-      end
-    end
-
-    context 'when output does not include `bestmove resign|win`' do
-      let(:output) { "id author hoge" }
-
-      it do
-        expect(response.game_result).to eq nil
-      end
-    end
-  end
-
   describe '#bestmove' do
     let(:response) { USI::Response.new(output) }
 
