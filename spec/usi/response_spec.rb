@@ -169,4 +169,29 @@ option name Eval_Dir type string default 20151105
       end
     end
   end
+
+  describe '#info' do
+    let(:response) { USI::Response.new(output) }
+
+    context 'when output includes `info xxxx`' do
+      let(:output) { "info nodes 120000 nps 116391" }
+
+      it do
+        expect(response.info).to be_instance_of USI::Resource::Info
+      end
+
+      it "info has some attributes" do
+        expect(response.info.nodes).to eq 120000
+        expect(response.info.nps).to eq 116391
+      end
+    end
+
+    context 'when output does not include `info xxxx`' do
+      let(:output) { "id author hoge" }
+
+      it do
+        expect(response.info).to be nil
+      end
+    end
+  end
 end
