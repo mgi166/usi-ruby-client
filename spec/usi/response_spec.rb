@@ -47,7 +47,7 @@ usiok
     end
 
     context 'when output does not include `id`' do
-      let(:output) { "option name author hoge" }
+      let(:output) { "option name hoge type string" }
 
       it do
         expect(response.id).to be nil

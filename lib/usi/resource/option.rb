@@ -14,7 +14,6 @@ module USI::Resource
 
     def initialize(commands)
       @var = []
-
       assign_attributes(commands)
       validate!
     end
