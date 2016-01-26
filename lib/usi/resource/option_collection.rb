@@ -1,5 +1,9 @@
+require 'forwardable'
+
 module USI::Resource
   class OptionCollection
+    extend Forwardable
+
     def self.create(args)
       option = Option.create(args)
       new(option)
@@ -11,6 +15,7 @@ module USI::Resource
     end
 
     attr_reader :options
+    def_delegators :@options, :[], :[]=, :keys, :values, :each
 
     def update(args)
       option = Option.create(args)
@@ -20,10 +25,6 @@ module USI::Resource
 
     def add(option)
       options[option.name] = option
-    end
-
-    def [](option_name)
-      options[option_name]
     end
   end
 end
