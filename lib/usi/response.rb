@@ -4,7 +4,6 @@ module USI
 
     def initialize(output)
       @output = output
-      @option = {}
       parse
     end
 
@@ -23,8 +22,12 @@ module USI
           else
             @id = Resource::Id.create($1)
           end
-        when /^option name (.+?) type (.+?)( (.+))??$/
-          @option[$1] = { type: $2, params: $4 } if $1
+        when /^option (.+)$/
+          if @option
+            @option.update($1)
+          else
+            @option = Resource::OptionCollection.create($1)
+          end
         when /^bestmove (.+)$/
           @bestmove = Resource::Bestmove.create($1)
         when /^checkmate (.+?)$/

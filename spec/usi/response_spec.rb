@@ -63,7 +63,11 @@ usiok
         let(:output) { "option name Best_Book_Move type check default false" }
 
         it do
-          expect(response.option).to eq({ "Best_Book_Move" => { type: "check", params: "default false" }})
+          expect(response.option).to be_instance_of USI::Resource::OptionCollection
+        end
+
+        it "OptionCollection#[] returns Resource::Option instance" do
+          expect(response.option['Best_Book_Move']).to be_instance_of USI::Resource::Option
         end
       end
 
@@ -76,14 +80,9 @@ option name Eval_Dir type string default 20151105
           EOS
         end
 
-        it do
-          expect(response.option).to eq(
-            {
-              "Hash" => { type: "button", params: nil },
-              "Emergency" => { type: "spin", params: "default 200 min 0 max 30000" },
-              "Eval_Dir" => { type: "string", params: "default 20151105" },
-            }
-          )
+        it "Store all options" do
+          option = response.option
+          expect(option.keys).to eq %w(Hash Emergency Eval_Dir)
         end
       end
     end
@@ -92,7 +91,7 @@ option name Eval_Dir type string default 20151105
       let(:output) { "id author hoge" }
 
       it do
-        expect(response.option).to eq({})
+        expect(response.option).to be nil
       end
     end
   end
