@@ -7,7 +7,7 @@ module USI
       parse
     end
 
-    # TODO: info, checkmate, and refactor
+    # TODO: refactor #parse
 
     def parse
       output.split("\n").each do |line|
