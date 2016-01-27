@@ -41,12 +41,21 @@ module USI
       command("setoption name #{name} value #{value}")
     end
 
+    def gameover(game_result)
+      raise MissingCommandParameter unless valid_game_result?(game_result)
+      command("gameover #{game_result}")
+    end
+
     # TODO: setoption, position, go, gameover
 
     private
 
     def command(command)
       engine.command(command)
+    end
+
+    def valid_game_result?(result)
+      %w(win lose draw).include?(result)
     end
   end
 end

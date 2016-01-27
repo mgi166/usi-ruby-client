@@ -87,6 +87,22 @@ describe USI::Client do
     end
   end
 
+  describe '#gameover' do
+    let(:client) { USI::Client.new("spec/bin/dummy_engine") }
+
+    it "call USI::Engine#command with `gameover`" do
+      expect(client).to receive(:command).with("gameover win")
+      client.gameover("win")
+    end
+
+    context 'invalid parameter' do
+      it do
+        expect { client.gameover("hoge") }
+          .to raise_error USI::Client::MissingCommandParameter
+      end
+    end
+  end
+
   describe '#command' do
     let(:client) { USI::Client.new("spec/bin/dummy_engine") }
 
