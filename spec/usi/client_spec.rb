@@ -55,10 +55,35 @@ describe USI::Client do
   describe '#quit' do
     let(:client) { USI::Client.new("spec/bin/dummy_engine") }
 
-
     it "call USI::Engine#command with `quit`" do
       expect(client).to receive(:command).with("quit")
       client.quit
+    end
+  end
+
+  describe '#setoption' do
+    let(:client) { USI::Client.new("spec/bin/dummy_engine") }
+
+    it "call USI::Engine#command with `setoption`" do
+      expect(client).to receive(:command).with("setoption name key1 value value1")
+
+      client.setoption("key1", "value1")
+    end
+
+    context 'invalid parameter' do
+      context 'name is blank' do
+        it do
+          expect { client.setoption("", "value1") }
+            .to raise_error USI::Client::MissingCommandParameter
+        end
+      end
+
+      context 'value is blank' do
+        it do
+          expect { client.setoption("name1", "") }
+            .to raise_error USI::Client::MissingCommandParameter
+        end
+      end
     end
   end
 

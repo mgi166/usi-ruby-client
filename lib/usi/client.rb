@@ -1,5 +1,7 @@
 module USI
   class Client
+    class MissingCommandParameter < StandardError; end
+
     attr_reader :engine
 
     def initialize(engine_path)
@@ -28,6 +30,15 @@ module USI
 
     def quit
       command("quit")
+    end
+
+    def setoption(name, value)
+      if name.nil? || name.to_s.empty? || \
+         value.nil? || value.to_s.empty?
+        raise MissingCommandParameter
+      end
+
+      command("setoption name #{name} value #{value}")
     end
 
     # TODO: setoption, position, go, gameover
