@@ -46,6 +46,11 @@ module USI
       command("gameover #{game_result}")
     end
 
+    def position(moves, sfen: nil)
+      position = sfen ? "sfen #{sfen}" : "startops"
+      command("position #{position} moves #{moves.join(' ')}")
+    end
+
     # TODO: setoption, position, go, gameover
 
     private
