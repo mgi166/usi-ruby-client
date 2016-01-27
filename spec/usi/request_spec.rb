@@ -1,7 +1,7 @@
-describe USI::Session do
+describe USI::Request do
   describe '#write' do
     let(:engine) { USI::Engine.new("spec/bin/dummy_engine") }
-    let(:session) { USI::Session.new(engine) }
+    let(:session) { USI::Request.new(engine) }
 
     it "STDIN is closed after #write" do
       session.write("hoge")
@@ -11,7 +11,7 @@ describe USI::Session do
 
   describe '#read' do
     let(:engine) { USI::Engine.new("spec/bin/dummy_engine") }
-    let(:session) { USI::Session.new(engine) }
+    let(:session) { USI::Request.new(engine) }
 
     it do
       session.write('hoge')
@@ -21,7 +21,7 @@ describe USI::Session do
 
   describe '#pid' do
     let(:engine) { USI::Engine.new("spec/bin/dummy_engine") }
-    let(:session) { USI::Session.new(engine) }
+    let(:session) { USI::Request.new(engine) }
 
     it do
       expect(session.pid).to be_instance_of Fixnum
@@ -35,7 +35,7 @@ describe USI::Session do
 
   describe '#status' do
     let(:engine) { USI::Engine.new("spec/bin/dummy_engine") }
-    let(:session) { USI::Session.new(engine) }
+    let(:session) { USI::Request.new(engine) }
 
     it "delegates on Process::Waiter#status" do
       expect(session.wait_thr).to receive(:status).with(no_args)
@@ -45,7 +45,7 @@ describe USI::Session do
 
   describe '#alive?' do
     let(:engine) { USI::Engine.new("spec/bin/dummy_engine") }
-    let(:session) { USI::Session.new(engine) }
+    let(:session) { USI::Request.new(engine) }
 
     it "delegates on Process::Waiter#alive?" do
       expect(session.wait_thr).to receive(:alive?).with(no_args)
@@ -55,7 +55,7 @@ describe USI::Session do
 
   describe '#stop?' do
     let(:engine) { USI::Engine.new("spec/bin/dummy_engine") }
-    let(:session) { USI::Session.new(engine) }
+    let(:session) { USI::Request.new(engine) }
 
     it "delegates on Process::Waiter#stop?" do
       expect(session.wait_thr).to receive(:stop?).with(no_args)
@@ -65,7 +65,7 @@ describe USI::Session do
 
   describe '#kill' do
     let(:engine) { USI::Engine.new("spec/bin/dummy_engine") }
-    let(:session) { USI::Session.new(engine) }
+    let(:session) { USI::Request.new(engine) }
 
     it "delegates on Process::Waiter#kill" do
       expect(session.wait_thr).to receive(:kill).with(no_args)

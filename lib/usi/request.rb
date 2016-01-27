@@ -2,7 +2,7 @@ require "forwardable"
 require "open3"
 
 module USI
-  class Session
+  class Request
     attr_reader :engine, :stdin, :stdout, :stderr, :wait_thr, :pid
     extend Forwardable
 
