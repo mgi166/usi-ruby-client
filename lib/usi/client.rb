@@ -55,6 +55,10 @@ module USI
       command("go ponder")
     end
 
+    def go_infinite
+      command("go infinite")
+    end
+
     # TODO: setoption, position, go, gameover
 
     private

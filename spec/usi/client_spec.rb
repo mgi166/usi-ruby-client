@@ -112,6 +112,15 @@ describe USI::Client do
     end
   end
 
+  describe '#go_infinite' do
+    let(:client) { USI::Client.new("spec/bin/dummy_engine") }
+
+    it "call USI::Engine#command with `go infinite`" do
+      expect(client).to receive(:command).with("go infinite")
+      client.go_infinite
+    end
+  end
+
   describe '#command' do
     let(:client) { USI::Client.new("spec/bin/dummy_engine") }
 
