@@ -13,9 +13,7 @@ module USI
     end
 
     def command(command)
-      session = Session.new(self)
-      session.write(command)
-      session.read
+      Request.new(self).perform(command)
     end
 
     def validate!
