@@ -51,6 +51,10 @@ module USI
       command("position #{position} moves #{moves.join(' ')}")
     end
 
+    def go_ponder
+      command("go ponder")
+    end
+
     # TODO: setoption, position, go, gameover
 
     private

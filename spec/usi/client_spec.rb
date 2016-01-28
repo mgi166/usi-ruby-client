@@ -103,6 +103,15 @@ describe USI::Client do
     end
   end
 
+  describe '#go_ponder' do
+    let(:client) { USI::Client.new("spec/bin/dummy_engine") }
+
+    it "call USI::Engine#command with `go ponder`" do
+      expect(client).to receive(:command).with("go ponder")
+      client.go_ponder
+    end
+  end
+
   describe '#command' do
     let(:client) { USI::Client.new("spec/bin/dummy_engine") }
 
