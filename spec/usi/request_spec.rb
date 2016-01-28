@@ -1,14 +1,4 @@
 describe USI::Request do
-  describe '#write' do
-    let(:engine) { USI::Engine.new("spec/bin/dummy_engine") }
-    let(:session) { USI::Request.new(engine) }
-
-    it "STDIN is closed after #write" do
-      session.write("hoge")
-      expect(session.stdin).to be_closed
-    end
-  end
-
   describe '#perform' do
     let(:engine) { USI::Engine.new("spec/bin/dummy_engine") }
     let(:session) { USI::Request.new(engine) }
