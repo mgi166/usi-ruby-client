@@ -64,7 +64,13 @@ module USI
       command("go mate #{limit}")
     end
 
-    # TODO: setoption, position, go, gameover
+    def go(btime: nil, wtime: nil, byoyomi: nil)
+      cmd = "go"
+      cmd += " btime #{btime}" if btime
+      cmd += " wtime #{wtime}" if wtime
+      cmd += " byoyomi #{byoyomi}" if byoyomi
+      command(cmd)
+    end
 
     private
 

@@ -139,6 +139,38 @@ describe USI::Client do
     end
   end
 
+  describe '#go' do
+    let(:client) { USI::Client.new("spec/bin/dummy_engine") }
+
+    context 'btime' do
+      it "call USI::Engine#command with `go btime {time}`" do
+        expect(client).to receive(:command).with("go btime 1000")
+        client.go(btime: 1000)
+      end
+    end
+
+    context 'wtime' do
+      it "call USI::Engine#command with `go wtime {time}`" do
+        expect(client).to receive(:command).with("go wtime 1000")
+        client.go(wtime: 1000)
+      end
+    end
+
+    context 'byoyomi' do
+      it "call USI::Engine#command with `go byoyomi {time}`" do
+        expect(client).to receive(:command).with("go byoyomi 1000")
+        client.go(byoyomi: 1000)
+      end
+    end
+
+    context 'mix' do
+      it "call USI::Engine#command with `go btime {time} wtime {time} byoyomi {time}`" do
+        expect(client).to receive(:command).with("go btime 1 wtime 2 byoyomi 3")
+        client.go(btime: 1, wtime: 2, byoyomi: 3)
+      end
+    end
+  end
+
   describe '#command' do
     let(:client) { USI::Client.new("spec/bin/dummy_engine") }
 
