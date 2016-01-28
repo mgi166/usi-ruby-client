@@ -9,13 +9,12 @@ describe USI::Request do
     end
   end
 
-  describe '#read' do
+  describe '#perform' do
     let(:engine) { USI::Engine.new("spec/bin/dummy_engine") }
     let(:session) { USI::Request.new(engine) }
 
     it do
-      session.write('hoge')
-      expect(session.read).to be_instance_of USI::Response
+      expect(session.perform('hoge')).to be_instance_of USI::Response
     end
   end
 

@@ -13,12 +13,9 @@ module USI
       @stdin, @stdout, @stderr, @wait_thr = *Open3.popen3(@engine.engine_path.to_s, chdir: @engine.engine_path.dirname)
     end
 
-    def write(command)
+    def perform(command)
       @stdin.puts command
       @stdin.close
-    end
-
-    def read
       Response.new(@stdout.read)
     end
   end
