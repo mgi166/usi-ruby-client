@@ -59,6 +59,11 @@ module USI
       command("go infinite")
     end
 
+    def go_mate(time)
+      limit = time ? time : "infinite"
+      command("go mate #{limit}")
+    end
+
     # TODO: setoption, position, go, gameover
 
     private

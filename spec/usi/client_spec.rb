@@ -121,6 +121,24 @@ describe USI::Client do
     end
   end
 
+  describe '#go_mate' do
+    let(:client) { USI::Client.new("spec/bin/dummy_engine") }
+
+    context 'time is present' do
+      it "call USI::Engine#command with `go mate {time}`" do
+        expect(client).to receive(:command).with("go mate 1000")
+        client.go_mate(1000)
+      end
+    end
+
+    context 'time is blank' do
+      it "call USI::Engine#command with `go mate infinite`" do
+        expect(client).to receive(:command).with("go mate infinite")
+        client.go_mate(nil)
+      end
+    end
+  end
+
   describe '#command' do
     let(:client) { USI::Client.new("spec/bin/dummy_engine") }
 
